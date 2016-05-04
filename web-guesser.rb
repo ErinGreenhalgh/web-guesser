@@ -4,6 +4,7 @@ require 'sinatra/reloader'
 SECRET_NUMBER = rand(101)
 message = ""
 number_message = ""
+color = ""
 
 def check_guess(guess)
   if guess > SECRET_NUMBER + 5
@@ -21,8 +22,19 @@ def check_guess(guess)
   end
 end
 
+def change_color(message)
+  if message == "Way too high!" || message == "Way too low!"
+    color = "red"
+  elsif message == "Too high!" || message == "Too low!"
+    color = 'mistyrose'
+  else
+    color = "green"
+  end
+end
+
 get '/' do
   guess = params['guess'].to_i
   message = check_guess(guess)
-  erb :index, :locals => {:number_message => number_message, :message => message}
+  color = change_color(message)
+  erb :index, :locals => {:number_message => number_message, :message => message, :color => color}
 end
