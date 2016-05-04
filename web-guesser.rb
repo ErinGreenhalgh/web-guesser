@@ -13,8 +13,6 @@ def check_guess(guess)
     message = "Too high!"
   elsif guess == SECRET_NUMBER
     message = "You got it right! \n The SECRET NUMBER is #{SECRET_NUMBER}"
-    # number_message = "The SECRET NUMBER is #{SECRET_NUMBER}"
-    # message + '/n' + number_message
   elsif guess < SECRET_NUMBER && guess >= SECRET_NUMBER - 5
     message = "Too low!"
   else
